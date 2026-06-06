@@ -6,9 +6,11 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 18:11:54 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 17:19:47 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 12:06:58 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/push_swap.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

@@ -6,21 +6,21 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 22:14:44 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 11:31:09 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 16:02:04 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	ft_checkadd(void *add)
+static int	ft_checkadd(void *add, int fd)
 {
 	if (!add)
-		return (ft_putstr("(nil)"));
-	ft_putstr("0x");
-	return (ft_putnbr_pointer((unsigned long long)add) + 2);
+		return (ft_putstr("(nil)", fd));
+	ft_putstr("0x", fd);
+	return (ft_putnbr_p((unsigned long long)add, fd) + 2);
 }
 
-static int	check_flags(va_list args, int c)
+static int	check_flags(va_list args, int c, int fd)
 {
 	int		res;
 	char	chr;
@@ -29,26 +29,26 @@ static int	check_flags(va_list args, int c)
 	if (c == 'c')
 	{
 		chr = va_arg(args, int);
-		res = write(1, &chr, 1);
+		res = write(fd, &chr, 1);
 	}
 	else if (c == 's')
-		res = ft_putstr(va_arg(args, char *));
+		res = ft_putstr(va_arg(args, char *), fd);
 	else if (c == '%')
-		res = write(1, "%", 1);
+		res = write(fd, "%", 1);
 	else if (c == 'i' || c == 'd')
-		res = ft_putnbr(va_arg(args, int));
+		res = ft_putnbr(va_arg(args, int), fd);
 	else if (c == 'u')
-		res = ft_putnbr_unsigned(va_arg(args, unsigned int));
+		res = ft_putnbr_u(va_arg(args, unsigned int), fd);
 	else if (c == 'X')
-		res = ft_putnbr_hexa(va_arg(args, unsigned int), "0123456789ABCDEF");
+		res = ft_putnbr_h(va_arg(args, unsigned int), "0123456789ABCDEF", fd);
 	else if (c == 'x')
-		res = ft_putnbr_hexa(va_arg(args, unsigned int), "0123456789abcdef");
+		res = ft_putnbr_h(va_arg(args, unsigned int), "0123456789abcdef", fd);
 	else if (c == 'p')
-		res = ft_checkadd(va_arg(args, void *));
+		res = ft_checkadd(va_arg(args, void *), fd);
 	return (res);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(int fd, const char *format, ...)
 {
 	va_list	args;
 	size_t	i;
@@ -62,10 +62,10 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			res = res + check_flags(args, format[i]);
+			res = res + check_flags(args, format[i], fd);
 		}
 		else
-			res = res + write(1, &format[i], 1);
+			res = res + write(fd, &format[i], 1);
 		i++;
 	}
 	va_end(args);

@@ -3,32 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 19:11:10 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:46:44 by gfranca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdio.h>
 
-// double	compute_disorder(t_stack *a)
-// {
-// 	int	mistakes;
-// 	int	total_pairs;
-// 	int	size_a;
-// 	int	i;
-// 	int	j;
+int	get_index(t_stack *stack, int value)
+{
+	t_stack	*tmp;
+	int		index;
 
-// 	mistakes = 0;
-// 	total_pairs = 0;
-// 	for i from 0 to size(a)-1:
-// 	for j from i+1 to size(a)-1:
-// 	total_pairs += 1
-// 	if a[i] > a[j]:
-// 	mistakes += 1
-// 	return mistakes / total_pairs
-// }
+	index = 0;
+	tmp = stack;
+	while (tmp)
+	{
+		if (tmp->value < value)
+			index++;
+		tmp = tmp->next;
+	}
+	return (index);
+}
+
+void	assign_indexes(t_stack *stack)
+{
+	t_stack	*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		tmp->index = get_index(stack, tmp->value);
+		tmp = tmp->next;
+	}
+}
+
+double	compute_disorder(t_stack *sa)
+{
+	t_stack	*cur;
+	t_stack	*next;
+	long	mistakes;
+	long	total_pairs;
+
+	mistakes = 0;
+	total_pairs = 0;
+	cur = sa;
+	while (cur)
+	{
+		next = cur->next;
+		while (next)
+		{
+			total_pairs++;
+			if (cur->value > next->value)
+				mistakes++;
+			next = next->next;
+		}
+		cur = cur->next;
+	}
+	if (total_pairs == 0)
+		return (0.0);
+	return ((double)mistakes / (double)total_pairs);
+}
 
 void	create_stack(t_stack **sa, char **args, int *result)
 {
@@ -90,17 +128,23 @@ int	main(int argc, char **argv)
 	t_stack	*sa;
 	t_stack	*sb;
 	int		algorithm;
+	int		size;
+	double	disorder;
 
 	algorithm = 0;
 	if (argc < 2)
 		return (0);
 	sa = ft_parse_args(argc, argv, &algorithm);
 	sb = NULL;
-	ft_printf("algoritimo main: %i\n", algorithm);
-	// swap_move(&sa);
+	size = ft_stacksize(sa);
+	disorder = compute_disorder(sa);
+	assign_indexes(sa);
+	printf("%.2f%%\n", disorder * 100.0);
+	simple(&sa);
+	ft_printf(1, "LISTA 1:\n");
 	while (sa)
 	{
-		ft_printf("%i\n", sa->value);
+		ft_printf(1, "value: %i\n", sa->value);
 		sa = sa->next;
 	}
 	return (0);

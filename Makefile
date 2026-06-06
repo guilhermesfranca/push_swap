@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+         #
+#    By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/20 11:20:54 by guicarva          #+#    #+#              #
-#    Updated: 2026/06/05 20:14:08 by guicarva         ###   ########.fr        #
+#    Updated: 2026/06/06 17:15:07 by gfranca          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ clean:
 	
 fclean: clean
 	$(RM) $(NAME)
+
+run: all
+	./push_swap 2 1 3
 
 re: fclean all
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 21:50:31 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 11:31:07 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:59:15 by gfranca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_putnbr_pointer(unsigned long nbr)
+int	ft_putnbr_p(unsigned long nbr, int fd)
 {
 	int		size;
 	char	*base;
@@ -20,39 +20,39 @@ int	ft_putnbr_pointer(unsigned long nbr)
 	base = "0123456789abcdef";
 	size = 0;
 	if (nbr >= 16)
-		size = size + ft_putnbr_pointer(nbr / 16);
-	write(1, &base[nbr % 16], 1);
+		size = size + ft_putnbr_p(nbr / 16, fd);
+	write(fd, &base[nbr % 16], 1);
 	size++;
 	return (size);
 }
 
-int	ft_putnbr_hexa(unsigned int nbr, char *base)
+int	ft_putnbr_h(unsigned int nbr, char *base, int fd)
 {
 	int		size;
 
 	size = 0;
 	if (nbr >= 16)
-		size = size + ft_putnbr_hexa(nbr / 16, base);
-	write(1, &base[nbr % 16], 1);
+		size = size + ft_putnbr_h(nbr / 16, base, fd);
+	write(fd, &base[nbr % 16], 1);
 	size++;
 	return (size);
 }
 
-int	ft_putnbr_unsigned(unsigned int n)
+int	ft_putnbr_u(unsigned int n, int fd)
 {
 	char	nbr;
 	int		size;
 
 	size = 0;
 	if (n >= 10)
-		size = size + ft_putnbr_unsigned(n / 10);
+		size = size + ft_putnbr_u(n / 10, fd);
 	nbr = (n % 10) + 48;
-	write(1, &nbr, 1);
+	write(fd, &nbr, 1);
 	size++;
 	return (size);
 }
 
-int	ft_putnbr(long n)
+int	ft_putnbr(long n, int fd)
 {
 	char	nbr;
 	int		size;
@@ -60,32 +60,31 @@ int	ft_putnbr(long n)
 	size = 0;
 	if (n < 0)
 	{
-		write(1, "-", 1);
+		write(fd, "-", 1);
 		n *= -1;
 		size++;
 	}
 	if (n >= 10)
-		size = size + ft_putnbr(n / 10);
+		size = size + ft_putnbr(n / 10, fd);
 	nbr = (n % 10) + 48;
-	write(1, &nbr, 1);
+	write(fd, &nbr, 1);
 	size++;
 	return (size);
 }
 
-
-int	ft_putstr(char *s)
+int	ft_putstr(char *s, int fd)
 {
 	int	i;
 
 	if (!s)
 	{
-		write(1, "(null)", 6);
+		write(fd, "(null)", 6);
 		return (6);
 	}
 	i = 0;
 	while (s[i])
 	{
-		write(1, &s[i], 1);
+		write(fd, &s[i], 1);
 		i++;
 	}
 	return (i);

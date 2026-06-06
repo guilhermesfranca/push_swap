@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 07:57:04 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 17:21:49 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 16:36:27 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,17 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new_node)
 	}
 	last = ft_stacklast(*lst);
 	last->next = new_node;
+}
+
+int	ft_stacksize(t_stack *lst)
+{
+	int		size;
+
+	size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
 }
