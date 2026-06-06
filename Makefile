@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+         #
+#    By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/20 11:20:54 by guicarva          #+#    #+#              #
-#    Updated: 2026/06/06 17:15:07 by gfranca          ###   ########.fr        #
+#    Updated: 2026/06/06 20:16:19 by guicarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
+#  python3 -m ft_ps_tester ./push_swap
 run: all
 	./push_swap 2 1 3
 

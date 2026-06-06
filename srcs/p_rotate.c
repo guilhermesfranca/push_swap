@@ -6,15 +6,15 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 18:27:11 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 19:05:59 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 20:09:33 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	pb(t_stack **sa, t_stack **sb)
+void	pb(t_stack **a, t_stack **b)
 {
-	push(sb, sa);
+	push(b, a);
 	ft_printf(1, "pb\n");
 }
 
@@ -34,21 +34,21 @@ void	rotate(t_stack **top)
 	*top = second;
 }
 
-void	ra(t_stack **sa)
+void	ra(t_stack **a)
 {
-	rotate(sa);
+	rotate(a);
 	ft_printf(1, "ra\n");
 }
 
-void	rb(t_stack **sb)
+void	rb(t_stack **b)
 {
-	rotate(sb);
+	rotate(b);
 	ft_printf(1, "rb\n");
 }
 
-void	rr(t_stack **sa, t_stack **sb)
+void	rr(t_stack **a, t_stack **b)
 {
-	rotate(sa);
-	rotate(sb);
+	rotate(a);
+	rotate(b);
 	ft_printf(1, "rr\n");
 }

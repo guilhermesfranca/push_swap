@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 11:55:33 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 19:04:47 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/06 20:09:02 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	swap(t_stack **top)
 	*top = second;
 }
 
-void	sa(t_stack **sa)
+void	sa(t_stack **a)
 {
-	swap(sa);
+	swap(a);
 	ft_printf(1, "sa\n");
 }
 
-void	sb(t_stack **sb)
+void	sb(t_stack **b)
 {
-	swap(sb);
+	swap(b);
 	ft_printf(1, "sb\n");
 }
 
-void	ss(t_stack **sa, t_stack **sb)
+void	ss(t_stack **a, t_stack **b)
 {
-	swap(sa);
-	swap(sb);
+	swap(a);
+	swap(b);
 	ft_printf(1, "ss\n");
 }
 
