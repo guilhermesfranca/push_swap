@@ -3,43 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   algoritm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/06 17:58:47 by gfranca           #+#    #+#             */
-/*   Updated: 2026/06/06 20:14:56 by guicarva         ###   ########.fr       */
+/*   Created: 2026/06/07 11:00:25 by guilhermefr       #+#    #+#             */
+/*   Updated: 2026/06/07 12:56:05 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// void	simple(t_stack **sa)
-// {
-// 	t_stack	*top;
-// 	t_stack	*mid;
-// 	t_stack	*bot;
-
-// 	top = *sa;
-// 	mid = top->next;
-// 	bot = top->next->next;
-// 	if (bot == NULL && top->value > mid->value)
-// 		return (swap(sa));
-// 	else if (bot == NULL)
-// 		return ;
-// 	if (top->value < mid->value && mid->value > bot->value
-// 		&& top->value < bot->value)
-// 		return (rotate_r(sa), swap(sa));
-// 	if (top->value > mid->value && mid->value < bot->value
-// 		&& top->value < bot->value)
-// 		return (swap(sa));
-// 	if (top->value < mid->value && mid->value > bot->value
-// 		&& top->value > bot->value)
-// 		return (rotate_r(sa));
-// 	if (top->value > mid->value && mid->value > bot->value)
-// 		return (swap(sa), rotate_r(sa));
-// 	if (top->value > mid->value && mid->value < bot->value
-// 		&& top->value > bot->value)
-// 		return (rotate(sa));
-// }
+int	is_sorted(t_stack *a)
+{
+	while (a && a->next)
+	{
+		if (a->value > a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
 
 void	simple_3low(t_stack **a)
 {
@@ -62,6 +44,66 @@ void	simple_3low(t_stack **a)
 		if (bot > top)
 			sa(a);
 	}
-	if (top > mid)
+	else if (top > mid)
 		sa(a);
+}
+
+void	bring_to_top(t_stack **a, int target_index, int size)
+{
+	int		pos;
+	t_stack	*tmp;
+
+	pos = 0;
+	tmp = *a;
+	while (tmp->index != target_index)
+	{
+		pos++;
+		tmp = tmp->next;
+	}
+	if (pos <= size / 2)
+		while ((*a)->index != target_index)
+			ra(a);
+	else
+		while ((*a)->index != target_index)
+			rra(a);
+}
+
+void	simple_5low(t_stack **a, t_stack **b, int size)
+{
+	if (size == 5)
+	{
+		bring_to_top(a, 0, size);
+		pb(a, b);
+		bring_to_top(a, 1, size);
+		pb(a, b);
+		simple_3low(a);
+		pa(a, b);
+		pa(a, b);
+	}
+	else
+	{
+		bring_to_top(a, 0, size);
+		pb(a, b);
+		simple_3low(a);
+		pa(a, b);
+	}
+}
+
+void	sort_simple(t_stack **a, t_stack **b, int size)
+{
+	int	current_index;
+	int	remaining;
+
+	remaining = size;
+	current_index = 0;
+	while (remaining > 3)
+	{
+		bring_to_top(a, current_index, size);
+		pb(a, b);
+		current_index++;
+		remaining--;
+	}
+	simple_3low(a);
+	while (*b)
+		pa(a, b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 20:19:13 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/07 12:41:39 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,29 +129,31 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	int		algorithm;
 	int		size;
-	double	disorder;
 
+	// double	disorder;
 	algorithm = 0;
 	if (argc < 2)
 		return (0);
 	a = ft_parse_args(argc, argv, &algorithm);
 	b = NULL;
 	size = ft_stacksize(a);
-	disorder = compute_disorder(a);
+	// disorder = compute_disorder(a);
 	assign_indexes(a);
-	printf("%.2f%%\n", disorder * 100.0);
-	push_swap(&a, &b, size);
-	ft_printf(1, "LISTA 1:\n");
-	while (a)
-	{
-		ft_printf(1, "value: %i\n", a->value);
-		a = a->next;
-	}
-	ft_printf(1, "LISTA 2:\n");
-	while (b)
-	{
-		ft_printf(1, "value: %i\n", b->value);
-		b = b->next;
-	}
+	// printf("%.2f%%\n", disorder * 100.0);
+	push_swap(&a, &b, size, algorithm);
+	// ft_printf(1, "LISTA 1:\n");
+	// while (a)
+	// {
+	// 	ft_printf(1, "value: %i\n", a->value);
+	// 	a = a->next;
+	// }
+	// ft_printf(1, "LISTA 2:\n");
+	// while (b)
+	// {
+	// 	ft_printf(1, "value: %i\n", b->value);
+	// 	b = b->next;
+	// }
+	free_stack(&a);
+	free_stack(&b);
 	return (0);
 }
