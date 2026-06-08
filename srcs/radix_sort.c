@@ -1,31 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 15:13:13 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 11:31:15 by guicarva         ###   ########.fr       */
+/*   Created: 2026/06/07 15:45:17 by guicarva          #+#    #+#             */
+/*   Updated: 2026/06/08 21:00:51 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-size_t	ft_strlen(const char *s)
+int	get_max_bits(int max_index)
 {
-	size_t	i;
+	int	bits;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	bits = 0;
+	while ((max_index >> bits) > 0)
+		bits++;
+	return (bits);
 }
 
-// #include <stdio.h>
-// 
-// int	main(void)
-// {
-// 	printf("tamanho: %zu\n", ft_strlen("42porto"));
-// 	return (0);
-// }
+void	radix_sort(t_stack **a, t_stack **b)
+{
+	int	i;
+	int	j;
+	int	size;
+	int	max_bits;
+
+	size = ft_stacksize(*a);
+	max_bits = get_max_bits(size - 1);
+	i = 0;
+	while (i < max_bits)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if (((*a)->index >> i & 1) == 0)
+				pb(b, a);
+			else
+				ra(a);
+			j++;
+		}
+		while (*b != NULL)
+			pa(a, b);
+		i++;
+	}
+}

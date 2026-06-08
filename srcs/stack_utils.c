@@ -6,13 +6,13 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 07:57:04 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 16:36:27 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/07 23:02:04 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*ft_stacknew(int value)
+t_stack	*ft_circular_newnode(int value)
 {
 	t_stack	*newnode;
 
@@ -20,20 +20,13 @@ t_stack	*ft_stacknew(int value)
 	if (!newnode)
 		return (NULL);
 	newnode->value = value;
-	newnode->next = NULL;
+	newnode->index = -1;
+	newnode->next = newnode;
+	newnode->prev = newnode;
 	return (newnode);
 }
 
-t_stack	*ft_stacklast(t_stack *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_stackadd_back(t_stack **lst, t_stack *new_node)
+void	ft_circular_add_back(t_stack **lst, t_stack *new_node)
 {
 	t_stack	*last;
 
@@ -44,19 +37,28 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new_node)
 		*lst = new_node;
 		return ;
 	}
-	last = ft_stacklast(*lst);
+	last = (*lst)->prev;
 	last->next = new_node;
+	new_node->prev = last;
+	new_node->next = *lst;
+	(*lst)->prev = new_node;
 }
 
-int	ft_stacksize(t_stack *lst)
+int	ft_stacksize(t_stack *stack)
 {
+	t_stack	*current;
 	int		size;
 
+	if (!stack)
+		return (0);
 	size = 0;
-	while (lst)
+	current = stack;
+	while (1)
 	{
-		lst = lst->next;
 		size++;
+		current = current->next;
+		if (current == stack)
+			break ;
 	}
 	return (size);
 }

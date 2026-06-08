@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 10:55:02 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/07 20:12:53 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	free_stack(t_stack **stack)
 	if (!stack || !*stack)
 		return ;
 	tmp = *stack;
+	if (tmp->prev)
+		tmp->prev->next = NULL;
 	while (tmp)
 	{
 		next_node = tmp->next;
@@ -49,15 +51,35 @@ void	print_error_end_free_exit(t_stack **sa, char **args)
 	exit(1);
 }
 
-int	is_duplicate(t_stack *sa, int n)
+int	is_duplicate(t_stack *stack, int n)
 {
-	while (sa)
+	t_stack	*current;
+
+	if (!stack)
+		return (0);
+	current = stack;
+	while (1)
 	{
-		if (sa->value == n)
+		if (current->value == n)
 			return (1);
-		sa = sa->next;
+		current = current->next;
+		if (current == stack)
+			break ;
 	}
 	return (0);
+}
+
+int	set_flags(char *args, int *algorithm)
+{
+	if (!ft_strcmp(args, "--simple"))
+		return ('s');
+	if (!ft_strcmp(args, "--medium"))
+		return ('m');
+	if (!ft_strcmp(args, "--complex"))
+		return ('c');
+	if (!ft_strcmp(args, "--adaptive"))
+		return ('a');
+	return (*algorithm);
 }
 
 int	is_flags(char *args)
@@ -65,10 +87,10 @@ int	is_flags(char *args)
 	if (!ft_strcmp(args, "--simple"))
 		return (1);
 	if (!ft_strcmp(args, "--medium"))
-		return (2);
+		return (1);
 	if (!ft_strcmp(args, "--complex"))
-		return (3);
+		return (1);
 	if (!ft_strcmp(args, "--adaptive"))
-		return (4);
+		return (1);
 	return (0);
 }

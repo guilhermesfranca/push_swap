@@ -6,13 +6,14 @@
 #    By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/20 11:20:54 by guicarva          #+#    #+#              #
-#    Updated: 2026/06/06 20:16:19 by guicarva         ###   ########.fr        #
+#    Updated: 2026/06/07 15:12:33 by guicarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME     = push_swap
 CC       = cc
 CFLAGS   = -Wall -Werror -Wextra -g
+MKDIR    = mkdir -p
 
 SRCS_DIR = srcs
 OBJS_DIR = objs
@@ -29,7 +30,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	mkdir -p $(OBJS_DIR)
+	$(MKDIR) $(OBJS_DIR)
 	$(CC) $(CFLAGS) -I $(INCS_DIR) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:47:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 20:10:33 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:41:08 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,39 @@
 
 void	pa(t_stack **a, t_stack **b)
 {
-	push(a, b);
+	push(b, a);
 	ft_printf(1, "pa\n");
 }
 
-void	rotate_r(t_stack **top)
+void	pb(t_stack **a, t_stack **b)
 {
-	t_stack	*first;
-	t_stack	*last;
-	t_stack	*penultimate;
-
-	if (!top || !*top || !(*top)->next)
-		return ;
-	first = *top;
-	penultimate = *top;
-	while (penultimate->next->next != NULL)
-		penultimate = penultimate->next;
-	last = penultimate->next;
-	penultimate->next = NULL;
-	last->next = first;
-	*top = last;
+	push(a, b);
+	ft_printf(1, "pb\n");
 }
 
 void	rra(t_stack **a)
 {
-	rotate_r(a);
+	if ((*a)->prev == *a)
+		return ;
+	*a = (*a)->prev;
 	ft_printf(1, "rra\n");
 }
 
 void	rrb(t_stack **b)
 {
-	rotate_r(b);
+	if ((*b)->prev == *b)
+		return ;
+	*b = (*b)->prev;
 	ft_printf(1, "rrb\n");
 }
 
 void	rrr(t_stack **a, t_stack **b)
 {
-	rotate_r(a);
-	rotate_r(b);
+	if ((*a)->prev == *a)
+		return ;
+	*a = (*a)->prev;
+	if ((*b)->prev == *b)
+		return ;
+	*b = (*b)->prev;
 	ft_printf(1, "rrr\n");
 }

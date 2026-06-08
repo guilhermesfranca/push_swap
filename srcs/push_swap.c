@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/07 12:38:45 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/08 21:19:33 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 void	push_swap(t_stack **a, t_stack **b, int size, int algorithm)
 {
-	if (is_sorted(*a))
+	if (!is_sorted(*a))
 		return ;
-	if (size == 2)
-	{
-		if ((*a)->value > (*a)->next->value)
-			sa(a);
-		return ;
-	}
-	if (size == 3)
+	if (size <= 3)
 	{
 		simple_3low(a);
 		return ;
@@ -34,7 +28,13 @@ void	push_swap(t_stack **a, t_stack **b, int size, int algorithm)
 	else if (algorithm == 2)
 		sort_simple(a, b, size);
 	else if (algorithm == 3)
-		sort_simple(a, b, size);
+	{
+		ft_printf(1, "usando radix\n");
+		radix_sort(a, b);
+	}
 	else
-		sort_simple(a, b, size);
+	{
+		ft_printf(1, "usando radix\n");
+		radix_sort(a, b);
+	}
 }

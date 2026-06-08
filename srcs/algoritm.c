@@ -3,24 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   algoritm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 11:00:25 by guilhermefr       #+#    #+#             */
-/*   Updated: 2026/06/07 12:56:05 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/07 23:29:18 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	is_sorted(t_stack *a)
+int	is_sorted(t_stack *stack)
 {
-	while (a && a->next)
+	t_stack	*current;
+
+	if (!stack)
+		return (0);
+	current = stack;
+	if (current->next == current)
+		return (0);
+	while (1)
 	{
-		if (a->value > a->next->value)
-			return (0);
-		a = a->next;
+		if (current->value > current->next->value)
+			return (1);
+		current = current->next;
+		if (current == stack)
+			break ;
 	}
-	return (1);
+	return (0);
 }
 
 void	simple_3low(t_stack **a)
@@ -32,7 +41,12 @@ void	simple_3low(t_stack **a)
 	top = (*a)->value;
 	mid = (*a)->next->value;
 	bot = (*a)->next->next->value;
-	if (top > mid && top > bot)
+	if (top == bot || (bot > mid && bot > top))
+	{
+		if (top > mid)
+			sa(a);
+	}
+	else if (top > mid && top > bot)
 	{
 		ra(a);
 		if (mid > bot)
@@ -44,8 +58,6 @@ void	simple_3low(t_stack **a)
 		if (bot > top)
 			sa(a);
 	}
-	else if (top > mid)
-		sa(a);
 }
 
 void	bring_to_top(t_stack **a, int target_index, int size)

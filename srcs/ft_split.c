@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:24:57 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/05 11:31:12 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/07 15:05:55 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,3 @@ char	**ft_split(char const *s, char c)
 	matrixx[i] = NULL;
 	return (matrixx);
 }
-
-// #include <stdio.h>
-// 
-// int	main(void)
-// {
-// 	char	**res;
-// 	size_t	i;
-// 
-// 	res = ft_split("ad  adsa  ad", ' ');
-// 	i = 0;
-// 	while (res[i])
-// 	{
-// 		printf("%s\n", res[i]);
-// 		free(res[i]);
-// 		i++;
-// 	}
-// 	free(res);
-// 	return (0);
-// }
