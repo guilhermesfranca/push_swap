@@ -6,13 +6,13 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:47:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 21:41:08 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/08 22:03:52 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **b, t_stack **a)
 {
 	push(b, a);
 	ft_printf(1, "pa\n");

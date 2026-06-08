@@ -47,6 +47,11 @@ typedef struct s_bench
 }					t_bench;
 
 /* autoheaders */
+int					is_sorted(t_stack *stack);
+void				simple_3low(t_stack **a);
+void				bring_to_top(t_stack **a, int target_index, int size);
+void				simple_5low(t_stack **a, t_stack **b, int size);
+void				sort_simple(t_stack **a, t_stack **b, int size);
 void				free_args(char **args);
 void				free_stack(t_stack **stack);
 void				sa(t_stack **a);
@@ -54,6 +59,10 @@ void				print_error_end_free_exit(t_stack **sa, char **args);
 int					is_duplicate(t_stack *stack, int n);
 int					set_flags(char *args, int *algorithm);
 int					is_flags(char *args);
+int					ft_atoi(const char *n_str, long *n);
+char				*ft_substr(char const *s, unsigned int start, size_t size);
+int					ft_strcmp(char *s1, char *s2);
+size_t				ft_strlen(const char *s);
 int					ft_printf(int fd, const char *format, ...);
 int					ft_putnbr_p(unsigned long nbr, int fd);
 int					ft_putnbr_h(unsigned int nbr, char *base, int fd);
@@ -66,19 +75,11 @@ void				assign_indexes(t_stack *stack);
 double				compute_disorder(t_stack *stack);
 void				create_stack(t_stack **stack, char **args, int *algorithm);
 t_stack				*ft_parse_args(int argc, char **argv, int *algorithm);
-t_stack				*ft_circular_newnode(int value);
-void				ft_circular_add_back(t_stack **lst, t_stack *new_node);
-int					ft_stacksize(t_stack *stack);
-int					ft_atoi(const char *n_str, long *n);
-char				*ft_substr(char const *s, unsigned int start, size_t size);
-int					ft_strcmp(char *s1, char *s2);
-size_t				ft_strlen(const char *s);
-void				print_list(t_stack *stack);
 void				push(t_stack **orin, t_stack **dest);
 void				ra(t_stack **a);
 void				rb(t_stack **b);
 void				rr(t_stack **a, t_stack **b);
-void				pa(t_stack **a, t_stack **b);
+void				pa(t_stack **b, t_stack **a);
 void				pb(t_stack **a, t_stack **b);
 void				rra(t_stack **a);
 void				rrb(t_stack **b);
@@ -86,13 +87,13 @@ void				rrr(t_stack **a, t_stack **b);
 void				swap(t_stack **stack);
 void				sb(t_stack **b);
 void				ss(t_stack **a, t_stack **b);
-void				push_swap(t_stack **a, t_stack **b, int size,
-						int algorithm);
-int					is_sorted(t_stack *stack);
-void				simple_3low(t_stack **a);
-void				bring_to_top(t_stack **a, int target_index, int size);
-void				simple_5low(t_stack **a, t_stack **b, int size);
-void				sort_simple(t_stack **a, t_stack **b, int size);
+void				invert(t_stack **stack);
+void				push_swap(t_stack **a, t_stack **b, int size, int algorithm,
+						double *disorder);
+t_stack				*ft_circular_newnode(int value);
+void				ft_circular_add_back(t_stack **lst, t_stack *new_node);
+int					ft_stacksize(t_stack *stack);
+void				print_list(t_stack *stack);
 int					get_max_bits(int max_index);
 void				radix_sort(t_stack **a, t_stack **b);
 #endif

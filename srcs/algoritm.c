@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 11:00:25 by guilhermefr       #+#    #+#             */
-/*   Updated: 2026/06/07 23:29:18 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/08 22:46:59 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,18 @@ int	is_sorted(t_stack *stack)
 {
 	t_stack	*current;
 
-	if (!stack)
-		return (0);
+	if (!stack || stack->next == stack)
+		return (1);
 	current = stack;
-	if (current->next == current)
-		return (0);
-	while (1)
+	while (current->next != stack)
 	{
 		if (current->value > current->next->value)
-			return (1);
+			return (0);
 		current = current->next;
-		if (current == stack)
-			break ;
 	}
-	return (0);
+	return (1);
 }
+
 
 void	simple_3low(t_stack **a)
 {

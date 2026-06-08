@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 15:45:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 21:00:51 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/08 22:04:28 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	radix_sort(t_stack **a, t_stack **b)
 		while (j < size)
 		{
 			if (((*a)->index >> i & 1) == 0)
-				pb(b, a);
+				pb(a, b);
 			else
 				ra(a);
 			j++;
 		}
 		while (*b != NULL)
-			pa(a, b);
+			pa(b, a);
 		i++;
 	}
 }

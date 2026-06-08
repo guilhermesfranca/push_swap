@@ -6,15 +6,36 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 21:19:33 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/08 22:54:39 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push_swap(t_stack **a, t_stack **b, int size, int algorithm)
+void	invert(t_stack **stack)
 {
-	if (!is_sorted(*a))
+	t_stack	*current;
+
+	if (!stack)
+		return ;
+	current = (*stack);
+	*stack = current->prev;
+	// while (1)
+	// {
+	// 	ra(stack);
+	// 	if (current == *stack)
+	// 		break ;
+	// }
+}
+
+void	push_swap(t_stack **a, t_stack **b, int size, int algorithm ,double *disorder)
+{
+	if ((int)*disorder == 1)
+	{
+		invert(a);
+		return ;
+	}
+	if (is_sorted(*a))
 		return ;
 	if (size <= 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 21:36:56 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/08 22:56:52 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,10 +143,12 @@ int	main(int argc, char **argv)
 	size = ft_stacksize(a);
 	disorder = compute_disorder(a);
 	assign_indexes(a);
-	printf("disorder: %.2f%%\n", disorder * 100.0);
-	ft_printf(1, "size: %i\n", size);
-	ft_printf(1, "algorithm: %c\n\n", algorithm);
-	push_swap(&a, &b, size, algorithm);
+	printf("disorder: %f%%\n", disorder * 100.0);
+	// ft_printf(1, "size: %i\n", size);
+	// ft_printf(1, "algorithm: %c\n\n", algorithm);
+	// push_swap(&a, &b, size, algorithm, &disorder);
+	ra(&a);
+	// ra(&a);
 	ft_printf(1, "\n");
 	print_list(a);
 	print_list(b);
