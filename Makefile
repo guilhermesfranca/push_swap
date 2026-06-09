@@ -6,7 +6,7 @@
 #    By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/20 11:20:54 by guicarva          #+#    #+#              #
-#    Updated: 2026/06/07 15:12:33 by guicarva         ###   ########.fr        #
+#    Updated: 2026/06/09 22:47:49 by guicarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 #  python3 -m ft_ps_tester ./push_swap
+#  pip install ft_ps_
+
 run: all
 	./push_swap 2 1 3
 

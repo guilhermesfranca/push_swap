@@ -3,63 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 20:59:32 by gfranca          ###   ########.fr       */
+/*   Updated: 2026/06/09 23:17:49 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	invert(t_stack **stack)
+void	adaptive(t_stack **a, t_stack **b, double disorder)
 {
-	t_stack	*current;
-
-	if (!stack)
-		return ;
-	current = (*stack);
-	*stack = current->prev;
-	// while (1)
-	// {
-	// 	ra(stack);
-	// 	if (current == *stack)
-	// 		break ;
-	// }
+	if (disorder < 0.2)
+		sort_simple(a, b);
+	else if (disorder < 0.5)
+		bucket_sort(a, b);
+	else
+		radix_sort(a, b);
 }
 
-void	push_swap(t_stack **a, t_stack **b, int size, int algorithm, double disorder)
+void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
 {
-	// if ((int)*disorder == 1)
-	// {
-	// 	invert(a);
-	// 	return ;
-	// }
+	double	disorder;
+	int		size;
+
+	disorder = compute_disorder(*a);
+	size = ft_stacksize(*a);
 	if (is_sorted(*a))
 		return ;
-	if (size <= 3)
-	{
+	else if (size <= 3)
 		simple_3low(a);
-		return ;
-	}
-	if (size <= 5)
-		simple_5low(a, b, size);
-	else if (algorithm == 's')
-		radix_sort(a, b);
-	else if (algorithm == 'm')
-		radix_sort(a, b);
-	else if (algorithm == 'c')
-	{
-		// ft_printf(1, "usando radix\n");
-		radix_sort(a, b);
-	}
-	else
-	{
-		if (disorder < 0.2)
-			sort_simple(a, b, size);
-		else if (disorder < 0.5)
-			radix_sort(a, b); // chunk sort
-		else
-			radix_sort(a, b);
-	}
+	else if (size <= 5)
+		simple_5low(a, b);
+	// else if (algorithm == 's')
+	// 	radix_sort(a, b);
+	// else if (algorithm == 'm')
+	// 	bucket_sort(a, b);
+	// else if (algorithm == 'c')
+// 		radix_sort(a, b);
+	// else
+	// 	adaptive(a, b, disorder);
 }

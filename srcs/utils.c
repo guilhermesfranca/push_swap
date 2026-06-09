@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 15:19:21 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/07 20:05:48 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/09 23:21:16 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,22 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+void	start_bench(t_bench *bench)
+{
+	bench->total_ops = 0;
+	bench->pa = 0;
+	bench->pb = 0;
+	bench->sa = 0;
+	bench->sb = 0;
+	bench->ss = 0;
+	bench->ra = 0;
+	bench->rb = 0;
+	bench->rr = 0;
+	bench->rra = 0;
+	bench->rrb = 0;
+	bench->rrr = 0;
+	bench->disorder = 0.0;
+	bench->strategy = NULL;
 }

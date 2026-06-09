@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/07 20:12:53 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/09 23:24:49 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_error_end_free_exit(t_stack **sa, char **args)
 		free_args(args);
 	if (sa && *sa)
 		free_stack(sa);
-	write(2, "Error\n", 6);
+	ft_printf(2, "Error\n");
 	exit(1);
 }
 
@@ -69,17 +69,13 @@ int	is_duplicate(t_stack *stack, int n)
 	return (0);
 }
 
-int	set_flags(char *args, int *algorithm)
+void	set_flags(char *args, t_bench *bench)
 {
 	if (!ft_strcmp(args, "--simple"))
-		return ('s');
-	if (!ft_strcmp(args, "--medium"))
-		return ('m');
-	if (!ft_strcmp(args, "--complex"))
-		return ('c');
-	if (!ft_strcmp(args, "--adaptive"))
-		return ('a');
-	return (*algorithm);
+		bench->strategy = "Adaptive / O(n"")";
+	else if (!ft_strcmp(args, "--medium"))
+	else if (!ft_strcmp(args, "--complex"))
+	else if (!ft_strcmp(args, "--adaptive"))
 }
 
 int	is_flags(char *args)
@@ -92,5 +88,8 @@ int	is_flags(char *args)
 		return (1);
 	if (!ft_strcmp(args, "--adaptive"))
 		return (1);
+	if (!ft_strcmp(args, "--bench"))
+		return (1);
 	return (0);
 }
+

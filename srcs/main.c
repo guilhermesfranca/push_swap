@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 20:57:46 by gfranca          ###   ########.fr       */
+/*   Updated: 2026/06/09 23:18:32 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ double	compute_disorder(t_stack *stack)
 	return ((double)mistakes / (double)total_pairs);
 }
 
-void	create_stack(t_stack **stack, char **args, int *algorithm)
+void	create_stack(t_stack **stack, char **args, t_bench *bench)
 {
 	t_stack	*new_node;
 	int		i;
@@ -87,12 +87,7 @@ void	create_stack(t_stack **stack, char **args, int *algorithm)
 	{
 		if (is_flags(args[i]))
 		{
-			*algorithm = set_flags(args[i], algorithm);
-			if (*algorithm > 0)
-			{
-				i++;
-				continue ;
-			}
+			set_flags(args[i], bench);
 		}
 		if (ft_atoi(args[i], &n))
 			print_error_end_free_exit(stack, args);
@@ -105,7 +100,7 @@ void	create_stack(t_stack **stack, char **args, int *algorithm)
 	}
 }
 
-t_stack	*ft_parse_args(int argc, char **argv, int *algorithm)
+t_stack	*ft_parse_args(int argc, char **argv, t_bench *bench)
 {
 	t_stack	*stack;
 	char	**args;
@@ -120,7 +115,7 @@ t_stack	*ft_parse_args(int argc, char **argv, int *algorithm)
 		args = ft_split(argv[i], ' ');
 		if (!args || !args[0])
 			print_error_end_free_exit(&stack, args);
-		create_stack(&stack, args, algorithm);
+		create_stack(&stack, args, bench);
 		free_args(args);
 		i++;
 	}
@@ -131,27 +126,15 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		algorithm;
-	double	disorder;
-	int		size;
+	t_bench	bench;
 
-	algorithm = 0;
+	a = ft_parse_args(argc, argv, &bench);
+	start_bench(&bench);
 	if (argc < 2)
 		return (0);
-	a = ft_parse_args(argc, argv, &algorithm);
 	b = NULL;
-	size = ft_stacksize(a);
-	disorder = compute_disorder(a);
 	assign_indexes(a);
-	// printf("disorder: %f%%\n", disorder * 100.0);
-	// ft_printf(1, "size: %i\n", size);
-	// ft_printf(1, "algorithm: %c\n\n", algorithm);
-	push_swap(&a, &b, size, algorithm, disorder);
-	// ra(&a);
-	// ra(&a);
-	// // ft_printf(1, "\n");
-	// print_list(a);
-	// print_list(b);
+	push_swap(&a, &b, &bench);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

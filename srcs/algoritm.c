@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 11:00:25 by guilhermefr       #+#    #+#             */
-/*   Updated: 2026/06/08 22:46:59 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/09 22:42:35 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	is_sorted(t_stack *stack)
 	}
 	return (1);
 }
-
 
 void	simple_3low(t_stack **a)
 {
@@ -77,8 +76,11 @@ void	bring_to_top(t_stack **a, int target_index, int size)
 			rra(a);
 }
 
-void	simple_5low(t_stack **a, t_stack **b, int size)
+void	simple_5low(t_stack **a, t_stack **b)
 {
+	int	size;
+
+	size = ft_stacksize(*a);
 	if (size == 5)
 	{
 		bring_to_top(a, 0, size);
@@ -98,11 +100,13 @@ void	simple_5low(t_stack **a, t_stack **b, int size)
 	}
 }
 
-void	sort_simple(t_stack **a, t_stack **b, int size)
+void	sort_simple(t_stack **a, t_stack **b)
 {
 	int	current_index;
 	int	remaining;
+	int	size;
 
+	size = ft_stacksize(*a);
 	remaining = size;
 	current_index = 0;
 	while (remaining > 3)
