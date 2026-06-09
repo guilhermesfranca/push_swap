@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 22:54:39 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:59:32 by gfranca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	invert(t_stack **stack)
 	// }
 }
 
-void	push_swap(t_stack **a, t_stack **b, int size, int algorithm ,double *disorder)
+void	push_swap(t_stack **a, t_stack **b, int size, int algorithm, double disorder)
 {
-	if ((int)*disorder == 1)
-	{
-		invert(a);
-		return ;
-	}
+	// if ((int)*disorder == 1)
+	// {
+	// 	invert(a);
+	// 	return ;
+	// }
 	if (is_sorted(*a))
 		return ;
 	if (size <= 3)
@@ -44,18 +44,22 @@ void	push_swap(t_stack **a, t_stack **b, int size, int algorithm ,double *disord
 	}
 	if (size <= 5)
 		simple_5low(a, b, size);
-	else if (algorithm == 1)
-		sort_simple(a, b, size);
-	else if (algorithm == 2)
-		sort_simple(a, b, size);
-	else if (algorithm == 3)
+	else if (algorithm == 's')
+		radix_sort(a, b);
+	else if (algorithm == 'm')
+		radix_sort(a, b);
+	else if (algorithm == 'c')
 	{
-		ft_printf(1, "usando radix\n");
+		// ft_printf(1, "usando radix\n");
 		radix_sort(a, b);
 	}
 	else
 	{
-		ft_printf(1, "usando radix\n");
-		radix_sort(a, b);
+		if (disorder < 0.2)
+			sort_simple(a, b, size);
+		else if (disorder < 0.5)
+			radix_sort(a, b); // chunk sort
+		else
+			radix_sort(a, b);
 	}
 }

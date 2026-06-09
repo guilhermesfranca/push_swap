@@ -1,0 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   the_turk.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 18:27:50 by gfranca           #+#    #+#             */
+/*   Updated: 2026/06/09 19:42:36 by gfranca          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/push_swap.h"
+
+static int	max(int custo_a, int custo_b)
+{
+	if (custo_a > custo_b)
+		return (custo_a);
+	return (custo_b);
+}
+static int	find_cheapest(t_stack *a, t_stack *b)
+{
+	t_stack	*current;
+	int		cheapest_index;
+
+	current = a;
+	while (1)
+	{
+		find_target_in_b(b, current->value);
+		current = current->next;
+	}
+}
+static int	calc_cost(int pos_a, int size_a, int pos_b, int size_b)
+{
+	int	custo_a;
+	int	custo_b;
+
+	if (pos_a <= size_a / 2)
+		custo_a = pos_a;
+	else
+		custo_a = size_a - pos_a;
+	if (pos_b <= size_b / 2)
+		custo_b = pos_b;
+	else
+		custo_b = size_b - pos_b;
+	if ((pos_a <= size_a / 2) == (pos_b <= size_b / 2))
+		return (max(custo_a, custo_b));
+	return (custo_a + custo_b);
+}
+static int	find_cheapest(t_stack *a, t_stack *b)
+{
+	t_stack	*current;
+	t_stack	*tmp;
+	int		best_cost;
+	int		best_index;
+	int		cost;
+	int		target_index;
+	int		pos_a;
+	int		pos_b;
+	int		size_a;
+	int		size_b;
+
+	size_a = ft_stacksize(a);
+	size_b = ft_stacksize(b);
+	best_cost = INT_MAX;
+	best_index = a->index;
+	current = a;
+	while (1)
+	{
+		pos_a = 0;
+		tmp = a;
+		while (tmp->index != current->index)
+		{
+			pos_a++;
+			tmp = tmp->next;
+		}
+		target_index = find_target_in_b(b, current->value);
+		pos_b = 0;
+		tmp = b;
+		while (tmp->index != target_index)
+		{
+			pos_b++;
+			tmp = tmp->next;
+		}
+		cost = calc_cost(pos_a, size_a, pos_b, size_b);
+		if (cost < best_cost)
+		{
+			best_cost = cost;
+			best_index = current->index;
+		}
+		current = current->next;
+		if (current == a)
+			break ;
+	}
+	return (best_index);
+}
+
+void	the_turk(t_stack **a, t_stack **b)
+{
+	push(a, b);
+	push(a, b);
+}

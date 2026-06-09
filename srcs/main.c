@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gfranca <gfranca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 22:56:52 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:57:46 by gfranca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,15 +143,15 @@ int	main(int argc, char **argv)
 	size = ft_stacksize(a);
 	disorder = compute_disorder(a);
 	assign_indexes(a);
-	printf("disorder: %f%%\n", disorder * 100.0);
+	// printf("disorder: %f%%\n", disorder * 100.0);
 	// ft_printf(1, "size: %i\n", size);
 	// ft_printf(1, "algorithm: %c\n\n", algorithm);
-	// push_swap(&a, &b, size, algorithm, &disorder);
-	ra(&a);
+	push_swap(&a, &b, size, algorithm, disorder);
 	// ra(&a);
-	ft_printf(1, "\n");
-	print_list(a);
-	print_list(b);
+	// ra(&a);
+	// // ft_printf(1, "\n");
+	// print_list(a);
+	// print_list(b);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
