@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 11:55:33 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/08 20:26:07 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/10 19:11:17 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,36 @@ void	swap(t_stack **stack)
 	}
 	last = first->prev;
 	third = second->next;
-	last->next = second;// o PROXIMO  do LAST   era o FIRST , agora e o SECOND
-	third->prev = first;// o ANTERIOR do THIRD  era o SECOND, agora e o FIRST
-	second->prev = last;// o ANTERIOR do SECOND era o FIRST, agora e o LAST
-	second->next = first;//o PROXIMO  do SECOND era o THIRD, agora e o FIRST
-	first->prev = second;//o ANTERIOR do FIRST  era o LAST, agora e o SECOND
-	first->next = third;// o PROXIMO  do FIRST  era o SECOND, agora e o THIRD
-	*stack = second;// muda o topo
+	last->next = second;
+	third->prev = first;
+	second->prev = last;
+	second->next = first;
+	first->prev = second;
+	first->next = third;
+	*stack = second;
 }
 
-void	sa(t_stack **a)
+void	sa(t_stack **a, t_bench *bench)
 {
 	swap(a);
+	bench->total_ops++;
+	bench->sa++;
 	ft_printf(1, "sa\n");
 }
 
-void	sb(t_stack **b)
+void	sb(t_stack **b, t_bench *bench)
 {
 	swap(b);
+	bench->total_ops++;
+	bench->sb++;
 	ft_printf(1, "sb\n");
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	ss(t_stack **a, t_stack **b, t_bench *bench)
 {
 	swap(a);
 	swap(b);
+	bench->total_ops++;
+	bench->ss++;
 	ft_printf(1, "ss\n");
 }

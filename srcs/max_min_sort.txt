@@ -1,0 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   max_min_sort.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/10 17:56:00 by guilh             #+#    #+#             */
+/*   Updated: 2026/06/10 19:43:46 by guilh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/push_swap.h"
+
+t_stack	*get_min_node(t_stack *a, int *size)
+{
+	t_stack	*current;
+	t_stack	*min_node;
+
+	*size = ft_stacksize(a);
+	if (!a)
+		return (NULL);
+	current = a;
+	min_node = a;
+	while (1)
+	{
+		if (current->index < min_node->index)
+			min_node = current;
+		current = current->next;
+		if (current == a)
+			break ;
+	}
+	return (min_node);
+}
+
+
+void	sort_simple_extraction(t_stack **a, t_stack **b, t_bench *bench)
+{
+	t_stack	*min_node;
+	t_stack	*current;
+	int		size;
+	int		pos;
+
+	while (ft_stacksize(*a) > 1)
+	{
+		min_node = get_min_node(*a, &size);
+		pos = 0;
+		current = *a;
+		while (current != min_node)
+		{
+			pos++;
+			current = current->next;
+		}
+		if (pos <= size / 2)
+			while (*a != min_node)
+				ra(a, bench);
+		else
+			while (*a != min_node)
+				rra(a, bench);
+		pb(a, b, bench);
+	}
+	while (*b)
+		pa(b, a, bench);
+}

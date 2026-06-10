@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 15:19:21 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 23:21:16 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:20:35 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ size_t	ft_strlen(const char *s)
 
 void	start_bench(t_bench *bench)
 {
+	bench->active = 0;
+	bench->algorithm = 0;
 	bench->total_ops = 0;
 	bench->pa = 0;
 	bench->pb = 0;

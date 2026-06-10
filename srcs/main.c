@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 23:18:32 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/10 21:16:23 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,47 +47,20 @@ void	assign_indexes(t_stack *stack)
 	}
 }
 
-double	compute_disorder(t_stack *stack)
-{
-	t_stack	*current;
-	t_stack	*next;
-	long	mistakes;
-	long	total_pairs;
-
-	mistakes = 0;
-	total_pairs = 0;
-	current = stack;
-	while (1)
-	{
-		next = current->next;
-		while (next != stack)
-		{
-			total_pairs++;
-			if (current->value > next->value)
-				mistakes++;
-			next = next->next;
-		}
-		if (current == stack->prev)
-			break ;
-		current = current->next;
-	}
-	if (total_pairs == 0)
-		return (0.0);
-	return ((double)mistakes / (double)total_pairs);
-}
-
 void	create_stack(t_stack **stack, char **args, t_bench *bench)
 {
 	t_stack	*new_node;
 	int		i;
 	long	n;
 
-	i = -1;
-	while (args[++i])
+	i = 0;
+	while (args[i])
 	{
 		if (is_flags(args[i]))
 		{
 			set_flags(args[i], bench);
+			i++;
+			continue ;
 		}
 		if (ft_atoi(args[i], &n))
 			print_error_end_free_exit(stack, args);
@@ -97,6 +70,7 @@ void	create_stack(t_stack **stack, char **args, t_bench *bench)
 		if (!new_node)
 			print_error_end_free_exit(stack, args);
 		ft_circular_add_back(stack, new_node);
+		i++;
 	}
 }
 
@@ -128,13 +102,14 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	t_bench	bench;
 
-	a = ft_parse_args(argc, argv, &bench);
-	start_bench(&bench);
 	if (argc < 2)
 		return (0);
-	b = NULL;
+	start_bench(&bench);
+	a = ft_parse_args(argc, argv, &bench);
 	assign_indexes(a);
+	b = NULL;
 	push_swap(&a, &b, &bench);
+	print_bench(&bench);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

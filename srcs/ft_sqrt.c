@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 17:38:12 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 21:50:08 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/10 08:43:05 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_sqrt(int nb)
+int	ft_sqrt(int n)
 {
 	int	i;
 
 	i = 1;
-	if (nb <= 0)
+	if (n <= 0)
 		return (0);
-	while (i <= nb / i)
+	while (i <= n / i)
 	{
-		if (i * i == nb)
+		if (i * i == n)
 			return (i);
 		i++;
 	}

@@ -3,44 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 23:17:49 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/10 21:32:41 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	adaptive(t_stack **a, t_stack **b, double disorder)
+int	is_sorted(t_stack *stack)
 {
-	if (disorder < 0.2)
-		sort_simple(a, b);
-	else if (disorder < 0.5)
-		bucket_sort(a, b);
+	t_stack	*current;
+
+	if (!stack || stack->next == stack)
+		return (1);
+	current = stack;
+	while (1)
+	{
+		if (current->index > current->next->index)
+			return (0);
+		current = current->next;
+		if (current->next == stack)
+			break ;
+	}
+	return (1);
+}
+
+int	how_sorted(t_stack *stack)
+{
+	t_stack	*current;
+
+	if (!stack || stack->next == stack)
+		return (1);
+	current = stack;
+	while (1)
+	{
+		if (current->index > current->next->index)
+			return (0);
+		current = current->next;
+		if (current->next == stack)
+			break ;
+	}
+	return (1);
+}
+
+void	adaptive(t_stack **a, t_stack **b, t_bench *bench)
+{
+	if (bench->disorder * 100.0 < 0.2)
+		sort_simple(a, b, bench);
+	else if (bench->disorder * 100.0 < 0.5)
+		bucket_sort(a, b, bench);
 	else
-		radix_sort(a, b);
+		bucket_sort(a, b, bench);
 }
 
 void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
 {
-	double	disorder;
 	int		size;
 
-	disorder = compute_disorder(*a);
-	size = ft_stacksize(*a);
-	if (is_sorted(*a))
+	if (!a || !*a || is_sorted(*a))
+	{
+		bench->disorder = 0.0;
 		return ;
-	else if (size <= 3)
-		simple_3low(a);
-	else if (size <= 5)
-		simple_5low(a, b);
-	// else if (algorithm == 's')
-	// 	radix_sort(a, b);
-	// else if (algorithm == 'm')
-	// 	bucket_sort(a, b);
-	// else if (algorithm == 'c')
-// 		radix_sort(a, b);
-	// else
-	// 	adaptive(a, b, disorder);
+	}
+	bench->disorder = compute_disorder(*a);
+	size = ft_stacksize(*a);
+	if (size <= 3)
+		simple_3low(a, bench);
+	else if (bench->algorithm == 2)
+		sort_simple(a, b, bench);
+	else if (bench->algorithm == 3)
+		bucket_sort(a, b, bench);
+	else if (bench->algorithm == 4)
+		bucket_sort(a, b, bench);
+	else
+		adaptive(a, b, bench);
 }

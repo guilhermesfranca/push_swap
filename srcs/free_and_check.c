@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/09 23:24:49 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/10 15:30:30 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,32 @@ int	is_duplicate(t_stack *stack, int n)
 	return (0);
 }
 
+// O(n\u221An)
 void	set_flags(char *args, t_bench *bench)
 {
-	if (!ft_strcmp(args, "--simple"))
-		bench->strategy = "Adaptive / O(n"")";
+	if (!ft_strcmp(args, "--adaptive"))
+	{
+		bench->algorithm = 1;
+		bench->strategy = "Adaptive / ";
+	}
+	else if (!ft_strcmp(args, "--simple"))
+	{
+		bench->algorithm = 2;
+		bench->strategy = "Simple / ";
+	}
 	else if (!ft_strcmp(args, "--medium"))
+	{
+		bench->algorithm = 3;
+		bench->strategy = "Medium / ";
+	}
 	else if (!ft_strcmp(args, "--complex"))
-	else if (!ft_strcmp(args, "--adaptive"))
+	{
+		bench->algorithm = 4;
+		bench->strategy = "Complex / ";
+	}
+	else if (!ft_strcmp(args, "--bench"))
+		bench->active = 1;
 }
-
 int	is_flags(char *args)
 {
 	if (!ft_strcmp(args, "--simple"))
