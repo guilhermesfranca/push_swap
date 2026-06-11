@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 15:19:21 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 15:20:35 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/11 18:21:06 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,5 @@ void	start_bench(t_bench *bench)
 	bench->rrb = 0;
 	bench->rrr = 0;
 	bench->disorder = 0.0;
-	bench->strategy = NULL;
+	bench->strategy = "Adaptive / ";
 }

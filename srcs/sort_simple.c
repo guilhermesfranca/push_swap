@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 11:00:25 by guilhermefr       #+#    #+#             */
-/*   Updated: 2026/06/10 21:10:02 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/11 18:36:45 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	sort_simple(t_stack **a, t_stack **b, t_bench *bench)
 	while (remaining > 3)
 	{
 		bring_to_top(a, bench, current_index);
-		pb(b, a, bench);
+		pb(a, b, bench);
 		current_index++;
 		remaining--;
 	}

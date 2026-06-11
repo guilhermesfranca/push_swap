@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 19:06:57 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 19:36:00 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/11 18:36:45 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int ft_putnbr_p(unsigned long nbr,int fd);
 int ft_putnbr_h(unsigned int nbr,char *base,int fd);
 int ft_putnbr_u(unsigned int n,int fd);
 int ft_putnbr(long n,int fd);
+int ft_putnbr_f(double n,int fd);
 int ft_putstr(char *s,int fd);
 char **ft_split(char const *s,char c);
 void swap(t_stack **stack);

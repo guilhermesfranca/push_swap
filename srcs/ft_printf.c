@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 22:14:44 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/06 16:02:04 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/11 18:36:45 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int	check_flags(va_list args, int c, int fd)
 		res = ft_putnbr(va_arg(args, int), fd);
 	else if (c == 'u')
 		res = ft_putnbr_u(va_arg(args, unsigned int), fd);
+	else if (c == 'f')
+		res = ft_putnbr_f(va_arg(args, double), fd);
 	else if (c == 'X')
 		res = ft_putnbr_h(va_arg(args, unsigned int), "0123456789ABCDEF", fd);
 	else if (c == 'x')
