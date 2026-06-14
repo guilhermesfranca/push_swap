@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 19:06:57 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/11 18:36:45 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/14 23:47:05 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,18 @@ int get_index(t_stack *stack,int value);
 void assign_indexes(t_stack *stack);
 void create_stack(t_stack **stack,char **args,t_bench *bench);
 t_stack *ft_parse_args(int argc,char **argv,t_bench *bench);
+int get_min_pos(t_stack *stack);
+int get_max_pos(t_stack *stack);
+int get_target_b_pos(t_stack *b,int index_a);
+int get_target_a_pos(t_stack *a,int index_b);
+void rotate_single(t_stack **stack,int pos,int size,char name,t_bench *bench);
+void execute_cheapest_move(t_stack **a,t_stack **b,int pos_a,int pos_b,t_bench *bench);
+void find_and_move_cheapest(t_stack **a,t_stack **b,t_bench *bench);
+void turk_sort(t_stack **a,t_stack **b,t_bench *bench);
 int is_sorted(t_stack *stack);
 int how_sorted(t_stack *stack);
 void adaptive(t_stack **a,t_stack **b,t_bench *bench);
 void push_swap(t_stack **a,t_stack **b,t_bench *bench);
-void push_to_b(t_stack **a,t_stack **b,t_bench *bench,int total_size);
-void push_to_a(t_stack **a,t_stack **b,t_bench *bench,int total_size);
-void bucket_sort(t_stack **a,t_stack **b,t_bench *bench);
 void pa(t_stack **a,t_stack **b,t_bench *bench);
 void pb(t_stack **a,t_stack **b,t_bench *bench);
 void rra(t_stack **a,t_bench *bench);
@@ -85,6 +90,8 @@ int ft_putnbr(long n,int fd);
 int ft_putnbr_f(double n,int fd);
 int ft_putstr(char *s,int fd);
 char **ft_split(char const *s,char c);
+int get_max_bits(t_stack *a);
+void radix_sort(t_stack **a,t_stack **b,t_bench *bench);
 void swap(t_stack **stack);
 void sa(t_stack **a,t_bench *bench);
 void sb(t_stack **b,t_bench *bench);
@@ -102,4 +109,7 @@ double compute_disorder(t_stack *stack);
 t_stack *ft_circular_newnode(int value);
 void ft_circular_add_back(t_stack **lst,t_stack *new_node);
 int ft_stacksize(t_stack *stack);
+void push_to_b(t_stack **a,t_stack **b,t_bench *bench,int total_size);
+void push_to_a(t_stack **a,t_stack **b,t_bench *bench,int total_size);
+void k_sort(t_stack **a,t_stack **b,t_bench *bench);
 #endif

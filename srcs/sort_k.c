@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_bucket.c                                      :+:      :+:    :+:   */
+/*   sort_k.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:02:25 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 20:52:11 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 00:03:32 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	push_to_a(t_stack **a, t_stack **b, t_bench *bench, int total_size)
 	}
 }
 
-void	bucket_sort(t_stack **a, t_stack **b, t_bench *bench)
+void	k_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	total_size;
 
