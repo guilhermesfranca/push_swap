@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   sort_turk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:22:16 by guilh             #+#    #+#             */
-/*   Updated: 2026/06/14 23:54:59 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 00:32:40 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	get_max_pos(t_stack *stack)
 	return (max_pos);
 }
 
-/* Encontra a posição ideal em B (Decrescente) para o elemento de A */
 int	get_target_b_pos(t_stack *b, int index_a)
 {
 	t_stack	*curr;
@@ -97,7 +96,6 @@ int	get_target_b_pos(t_stack *b, int index_a)
 	return (target_pos);
 }
 
-/* Encontra a posição ideal em A (Crescente) para o elemento de B */
 int	get_target_a_pos(t_stack *a, int index_b)
 {
 	t_stack	*curr;
@@ -126,11 +124,6 @@ int	get_target_a_pos(t_stack *a, int index_b)
 	return (target_pos);
 }
 
-/* ========================================================================== */
-/*                       2. EXECUTORES DE MOVIMENTOS                          */
-/* ========================================================================== */
-
-/* Aplica rotações individuais simples na stack A ou B */
 void	rotate_single(t_stack **stack, int pos, int size, char name, t_bench *bench)
 {
 	if (pos <= size / 2)
@@ -163,7 +156,6 @@ void	execute_cheapest_move(t_stack **a, t_stack **b, int pos_a, int pos_b, t_ben
 
 	size_a = ft_stacksize(*a);
 	size_b = ft_stacksize(*b);
-	// Caso 1: Ambos acima da metade -> usar rr
 	if (pos_a <= size_a / 2 && pos_b <= size_b / 2)
 	{
 		while (pos_a > 0 && pos_b > 0)
@@ -173,7 +165,6 @@ void	execute_cheapest_move(t_stack **a, t_stack **b, int pos_a, int pos_b, t_ben
 			pos_b--;
 		}
 	}
-	// Caso 2: Ambos abaixo da metade -> usar rrr
 	else if (pos_a > size_a / 2 && pos_b > size_b / 2)
 	{
 		while (pos_a < size_a && pos_b < size_b)
@@ -183,15 +174,10 @@ void	execute_cheapest_move(t_stack **a, t_stack **b, int pos_a, int pos_b, t_ben
 			pos_b++;
 		}
 	}
-	// Finalizar rotações individuais que sobraram
 	rotate_single(a, pos_a, size_a, 'a', bench);
 	rotate_single(b, pos_b, size_b, 'b', bench);
 	pb(a, b, bench);
 }
-
-/* ========================================================================== */
-/*                       3. CÁLCULO GULOSO DE CUSTO                           */
-/* ========================================================================== */
 
 void	find_and_move_cheapest(t_stack **a, t_stack **b, t_bench *bench)
 {
@@ -203,6 +189,9 @@ void	find_and_move_cheapest(t_stack **a, t_stack **b, t_bench *bench)
 	int		best_a;
 	int		best_b;
 	int		min_ops;
+	int		cost_a;
+	int		cost_b;
+	int		total_cost;
 
 	curr = *a;
 	pos_a = 0;
@@ -212,12 +201,21 @@ void	find_and_move_cheapest(t_stack **a, t_stack **b, t_bench *bench)
 	while (1)
 	{
 		pos_b = get_target_b_pos(*b, curr->index);
-		int cost_a = (pos_a <= size_a / 2) ? pos_a : size_a - pos_a;
-		int cost_b = (pos_b <= size_b / 2) ? pos_b : size_b - pos_b;
-		int total_cost;
-		
+		if (pos_a <= size_a / 2)
+			cost_a = pos_a;
+		else
+			cost_a = size_a - pos_a;
+		if (pos_b <= size_b / 2)
+			cost_b = pos_b;
+		else
+			cost_b = size_b - pos_b;
 		if ((pos_a <= size_a / 2 && pos_b <= size_b / 2) || (pos_a > size_a / 2 && pos_b > size_b / 2))
-			total_cost = (cost_a > cost_b) ? cost_a : cost_b;
+		{
+			if (cost_a > cost_b)
+				total_cost = cost_a;
+			else
+				total_cost = cost_b;
+		}
 		else
 			total_cost = cost_a + cost_b;
 		if (total_cost < min_ops)

@@ -6,14 +6,13 @@
 #    By: guilh <guilh@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/20 11:20:54 by guicarva          #+#    #+#              #
-#    Updated: 2026/06/14 22:20:41 by guilh            ###   ########.fr        #
+#    Updated: 2026/06/15 00:32:52 by guilh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME     = push_swap
 CC       = cc
-CFLAGS   = -g
-# CFLAGS   = -Wall -Werror -Wextra -g
+CFLAGS   = -Wall -Werror -Wextra -g
 MKDIR    = mkdir -p
 
 SRCS_DIR = srcs
