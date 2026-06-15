@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   sort_k.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:02:25 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 00:03:32 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 23:47:29 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int	ft_sqrt(int n)
+{
+	int	i;
+
+	i = 1;
+	if (n <= 0)
+		return (0);
+	while (i <= n / i)
+	{
+		if (i * i == n)
+			return (i);
+		i++;
+	}
+	return (i - 1);
+}
 
 void	push_to_b(t_stack **a, t_stack **b, t_bench *bench, int total_size)
 {

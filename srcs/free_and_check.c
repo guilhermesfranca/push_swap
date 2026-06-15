@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 15:30:30 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 23:45:37 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,6 @@ void	print_error_end_free_exit(t_stack **sa, char **args)
 	exit(1);
 }
 
-int	is_duplicate(t_stack *stack, int n)
-{
-	t_stack	*current;
-
-	if (!stack)
-		return (0);
-	current = stack;
-	while (1)
-	{
-		if (current->value == n)
-			return (1);
-		current = current->next;
-		if (current == stack)
-			break ;
-	}
-	return (0);
-}
-
 // O(n\u221An)
 void	set_flags(char *args, t_bench *bench)
 {
@@ -95,6 +77,7 @@ void	set_flags(char *args, t_bench *bench)
 	else if (!ft_strcmp(args, "--bench"))
 		bench->active = 1;
 }
+
 int	is_flags(char *args)
 {
 	if (!ft_strcmp(args, "--simple"))

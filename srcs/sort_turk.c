@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_turk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:22:16 by guilh             #+#    #+#             */
-/*   Updated: 2026/06/15 00:32:40 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 20:38:43 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ void	rotate_single(t_stack **stack, int pos, int size, char name, t_bench *bench
 	}
 }
 
-/* Aplica rotações duplas otimizadas (rr / rrr) quando aplicável */
 void	execute_cheapest_move(t_stack **a, t_stack **b, int pos_a, int pos_b, t_bench *bench)
 {
 	int	size_a;

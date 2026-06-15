@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 15:45:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 20:51:35 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 22:47:54 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,30 @@ int	get_max_bits(t_stack *a)
 	return (bits);
 }
 
+int	aaaa(t_stack *stack, int i)
+{
+	t_stack	*curr;
+	int		one;
+	int		zero;
+
+	curr = stack;
+	one = 0;
+	zero = 0;
+	while (1)
+	{
+		if (((curr->index >> i) & 1) == 1)
+			one++;
+		else
+			zero++;
+		curr = curr->next;
+		if (curr == stack)
+			break ;
+	}
+	if (one == 0 || zero == 0)
+		return (1);
+	return (0);
+}
+
 void	radix_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	i;
@@ -43,24 +67,42 @@ void	radix_sort(t_stack **a, t_stack **b, t_bench *bench)
 	int	size;
 	int	max_bits;
 
-	if (!a || !*a || is_sorted(*a))
-		return ;
-	size = ft_stacksize(*a);
 	max_bits = get_max_bits(*a);
-	i = -1;
-	while (++i < max_bits)
+	i = 0;
+	while (i < max_bits)
 	{
-		if (is_sorted(*a) && *b == NULL)
-			break ;
-		j = -1;
-		while (++j < size)
+		j = 0;
+		size = ft_stacksize(*a);
+		if (aaaa(*a, i))
+		{
+			i++;
+			continue ;
+		}
+		while (j < size)
 		{
 			if ((((*a)->index >> i) & 1) == 0)
 				pb(a, b, bench);
 			else
 				ra(a, bench);
+			j++;
 		}
-		while (*b != NULL)
-			pa(a, b, bench);
+		j = 0;
+		size = ft_stacksize(*b);
+		if (aaaa(*b, i + 1))
+		{
+			i++;
+			continue ;
+		}
+		while (j < size)
+		{
+			if (((*b)->index >> (i + 1) & 1) == 1)
+				pa(a, b, bench);
+			else
+				rb(b, bench);
+			j++;
+		}
+		i++;
 	}
+	while (*b)
+		pa(a, b, bench);
 }

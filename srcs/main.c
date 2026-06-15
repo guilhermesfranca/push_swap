@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 21:16:23 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 22:22:04 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ int	main(int argc, char **argv)
 	assign_indexes(a);
 	b = NULL;
 	push_swap(&a, &b, &bench);
-	print_bench(&bench);
+	if (bench.active)
+		print_bench(&bench);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

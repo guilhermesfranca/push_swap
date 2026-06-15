@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 07:57:04 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/07 23:02:04 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/15 23:46:16 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,22 @@ int	ft_stacksize(t_stack *stack)
 			break ;
 	}
 	return (size);
+}
+
+int	is_duplicate(t_stack *stack, int n)
+{
+	t_stack	*current;
+
+	if (!stack)
+		return (0);
+	current = stack;
+	while (1)
+	{
+		if (current->value == n)
+			return (1);
+		current = current->next;
+		if (current == stack)
+			break ;
+	}
+	return (0);
 }

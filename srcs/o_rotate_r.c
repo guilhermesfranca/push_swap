@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_rotate_r.c                                       :+:      :+:    :+:   */
+/*   o_rotate_r.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:47:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/10 20:36:12 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/15 23:25:01 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	pa(t_stack **a, t_stack **b, t_bench *bench)
-{
-	push(b, a);
-	bench->total_ops++;
-	bench->pa++;
-	ft_printf(1, "pa\n");
-}
-
-void	pb(t_stack **a, t_stack **b, t_bench *bench)
-{
-	push(a, b);
-	bench->total_ops++;
-	bench->pb++;
-	ft_printf(1, "pb\n");
-}
 
 void	rra(t_stack **a, t_bench *bench)
 {
