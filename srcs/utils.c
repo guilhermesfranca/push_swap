@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 15:19:21 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/11 18:21:06 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/17 23:30:51 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,6 @@ int	ft_atoi(const char *n_str, long *n)
 	return (0);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t size)
-{
-	char	*new;
-	size_t	len;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	len = ft_strlen(s);
-	if (start >= len)
-	{
-		new = malloc(1);
-		return (new = NULL, new);
-	}
-	if (size > len - start)
-		size = len - start;
-	new = malloc(sizeof(char) * (size + 1));
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (i < size && s[start + i])
-	{
-		new[i] = s[start + i];
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -76,20 +47,12 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 void	start_bench(t_bench *bench)
 {
+	bench->disorder = 0.0;
 	bench->active = 0;
 	bench->algorithm = 0;
+	bench->strategy = "Adaptive";
 	bench->total_ops = 0;
 	bench->pa = 0;
 	bench->pb = 0;
@@ -102,6 +65,4 @@ void	start_bench(t_bench *bench)
 	bench->rra = 0;
 	bench->rrb = 0;
 	bench->rrr = 0;
-	bench->disorder = 0.0;
-	bench->strategy = "Adaptive / ";
 }

@@ -6,7 +6,7 @@
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 17:56:00 by guilh             #+#    #+#             */
-/*   Updated: 2026/06/10 19:43:46 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/17 23:34:01 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_stack	*get_min_node(t_stack *a, int *size)
 	}
 	return (min_node);
 }
-
 
 void	sort_simple_extraction(t_stack **a, t_stack **b, t_bench *bench)
 {

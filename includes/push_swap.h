@@ -6,7 +6,7 @@
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 19:06:57 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/14 23:47:05 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/17 23:25:56 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stddef.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 typedef struct s_stack
 {
@@ -52,10 +58,13 @@ void simple_3low(t_stack **stack,t_bench *bench);
 void bring_to_top(t_stack **stack,t_bench *bench,int target_index);
 void sort_simple(t_stack **a,t_stack **b,t_bench *bench);
 int ft_atoi(const char *n_str,long *n);
-char *ft_substr(char const *s,unsigned int start,size_t size);
 int ft_strcmp(char *s1,char *s2);
-size_t ft_strlen(const char *s);
 void start_bench(t_bench *bench);
+size_t ft_strlen(const char *s);
+char *ft_strdup(const char *s);
+char *ft_join_free(char const *s1,char const *s2);
+char *ft_strchr(const char *s,int c);
+char *ft_substr(char const *s,unsigned int start,size_t len);
 int get_index(t_stack *stack,int value);
 void assign_indexes(t_stack *stack);
 void create_stack(t_stack **stack,char **args,t_bench *bench);
@@ -71,6 +80,8 @@ void swap(t_stack **stack);
 void sa(t_stack **a,t_bench *bench);
 void sb(t_stack **b,t_bench *bench);
 void ss(t_stack **a,t_stack **b,t_bench *bench);
+t_stack *get_min_node(t_stack *a,int *size);
+void sort_simple_extraction(t_stack **a,t_stack **b,t_bench *bench);
 int ft_putnbr_f(double n,int fd);
 int ft_printf(int fd,const char *format,...);
 int assing_cost(int pos,int size);
@@ -105,6 +116,7 @@ int get_min_pos(t_stack *stack);
 int get_max_pos(t_stack *stack);
 int get_target_b_pos(t_stack *b,int index_a);
 int get_target_a_pos(t_stack *a,int index_b);
+char *get_next_line(int fd);
 void ra(t_stack **a,t_bench *bench);
 void rb(t_stack **b,t_bench *bench);
 void rr(t_stack **a,t_stack **b,t_bench *bench);

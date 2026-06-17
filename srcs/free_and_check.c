@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 23:45:37 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/17 22:56:38 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,23 @@ void	print_error_end_free_exit(t_stack **sa, char **args)
 	exit(1);
 }
 
-// O(n\u221An)
 void	set_flags(char *args, t_bench *bench)
 {
-	if (!ft_strcmp(args, "--adaptive"))
+	if (!ft_strcmp(args, "--simple"))
 	{
 		bench->algorithm = 1;
-		bench->strategy = "Adaptive / ";
-	}
-	else if (!ft_strcmp(args, "--simple"))
-	{
-		bench->algorithm = 2;
-		bench->strategy = "Simple / ";
+		bench->strategy = "Simple / O(n²)";
 	}
 	else if (!ft_strcmp(args, "--medium"))
 	{
-		bench->algorithm = 3;
-		bench->strategy = "Medium / ";
+		bench->algorithm = 2;
+		bench->strategy = "Medium / O(n\u221An)";
 	}
 	else if (!ft_strcmp(args, "--complex"))
 	{
-		bench->algorithm = 4;
-		bench->strategy = "Complex / ";
+		bench->algorithm = 3;
+		bench->strategy = "Complex / O(n log n)";
 	}
-	else if (!ft_strcmp(args, "--bench"))
-		bench->active = 1;
 }
 
 int	is_flags(char *args)

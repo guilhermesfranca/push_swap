@@ -6,7 +6,7 @@
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 00:06:02 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/17 23:04:43 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	how_sorted(t_stack *stack)
 
 void	adaptive(t_stack **a, t_stack **b, t_bench *bench)
 {
-	if (bench->disorder * 100.0 < 20.0)
+	if (bench->disorder <= 0.2)
 		radix_sort(a, b, bench);
-	else if (bench->disorder * 100.0 < 50.0)
+	else if (bench->disorder <= 0.5)
 		k_sort(a, b, bench);
 	else
 		turk_sort(a, b, bench);
@@ -60,24 +60,23 @@ void	adaptive(t_stack **a, t_stack **b, t_bench *bench)
 
 void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
 {
-	int		size;
+	int	size;
 
 	if (!a || !*a || is_sorted(*a))
 	{
 		bench->disorder = 0.0;
 		return ;
 	}
-	bench->disorder = compute_disorder(*a);
 	size = ft_stacksize(*a);
 	if (size <= 3)
 		simple_3low(a, bench);
 	else if (size <= 5)
 		sort_simple(a, b, bench);
-	else if (bench->algorithm == 2)
+	else if (bench->algorithm == 1)
 		radix_sort(a, b, bench);
-	else if (bench->algorithm == 3)
+	else if (bench->algorithm == 2)
 		k_sort(a, b, bench);
-	else if (bench->algorithm == 4)
+	else if (bench->algorithm == 3)
 		turk_sort(a, b, bench);
 	else
 		adaptive(a, b, bench);

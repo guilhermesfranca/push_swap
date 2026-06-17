@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 22:22:04 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/17 23:36:04 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	create_stack(t_stack **stack, char **args, t_bench *bench)
 	{
 		if (is_flags(args[i]))
 		{
+			if (!ft_strcmp(args[i], "--bench"))
+				bench->active = 1;
 			set_flags(args[i], bench);
 			i++;
 			continue ;
@@ -106,9 +108,17 @@ int	main(int argc, char **argv)
 		return (0);
 	start_bench(&bench);
 	a = ft_parse_args(argc, argv, &bench);
-	assign_indexes(a);
 	b = NULL;
+	bench.disorder = compute_disorder(a);
+	if (!bench.algorithm && bench.disorder <= 0.2)
+		bench.strategy = "Adaptive / O(n²)";
+	else if (!bench.algorithm && bench.disorder <= 0.5)
+		bench.strategy = "Adaptive / O(n\u221An)";
+	else if (!bench.algorithm && bench.disorder >= 0.5)
+		bench.strategy = "Adaptive / O(n log n)";
+	assign_indexes(a);
 	push_swap(&a, &b, &bench);
+	//sort_simple_extraction(&a, &b, &bench);
 	if (bench.active)
 		print_bench(&bench);
 	free_stack(&a);
