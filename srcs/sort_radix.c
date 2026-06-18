@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 15:45:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 22:47:54 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/18 00:55:58 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,47 +60,61 @@ int	aaaa(t_stack *stack, int i)
 	return (0);
 }
 
+static void	process_a_bit(t_stack **a, t_stack **b, t_bench *bench, int i)
+{
+	int	j;
+	int	size;
+
+	j = 0;
+	size = ft_stacksize(*a);
+	while (j < size)
+	{
+		if ((((*a)->index >> i) & 1) == 0)
+			pb(a, b, bench);
+		else
+			ra(a, bench);
+		j++;
+	}
+}
+
+static void	process_b_bit(t_stack **a, t_stack **b, t_bench *bench, int i)
+{
+	int	j;
+	int	size;
+
+	j = 0;
+	size = ft_stacksize(*b);
+	while (j < size)
+	{
+		if (((*b)->index >> (i + 1) & 1) == 1)
+			pa(a, b, bench);
+		else
+			rb(b, bench);
+		j++;
+	}
+}
+
 void	radix_sort(t_stack **a, t_stack **b, t_bench *bench)
 {
 	int	i;
-	int	j;
-	int	size;
 	int	max_bits;
 
 	max_bits = get_max_bits(*a);
 	i = 0;
 	while (i < max_bits)
 	{
-		j = 0;
-		size = ft_stacksize(*a);
 		if (aaaa(*a, i))
 		{
 			i++;
 			continue ;
 		}
-		while (j < size)
-		{
-			if ((((*a)->index >> i) & 1) == 0)
-				pb(a, b, bench);
-			else
-				ra(a, bench);
-			j++;
-		}
-		j = 0;
-		size = ft_stacksize(*b);
+		process_a_bit(a, b, bench, i);
 		if (aaaa(*b, i + 1))
 		{
 			i++;
 			continue ;
 		}
-		while (j < size)
-		{
-			if (((*b)->index >> (i + 1) & 1) == 1)
-				pa(a, b, bench);
-			else
-				rb(b, bench);
-			j++;
-		}
+		process_b_bit(a, b, bench, i);
 		i++;
 	}
 	while (*b)

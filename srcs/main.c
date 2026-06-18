@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/17 23:36:04 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/18 01:09:44 by guilhermefr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv)
 	if (!bench.algorithm && bench.disorder <= 0.2)
 		bench.strategy = "Adaptive / O(n²)";
 	else if (!bench.algorithm && bench.disorder <= 0.5)
-		bench.strategy = "Adaptive / O(n\u221An)";
+		bench.strategy = "Adaptive / O(n√n)";
 	else if (!bench.algorithm && bench.disorder >= 0.5)
 		bench.strategy = "Adaptive / O(n log n)";
 	assign_indexes(a);

@@ -61,7 +61,7 @@ void	set_flags(char *args, t_bench *bench)
 	else if (!ft_strcmp(args, "--medium"))
 	{
 		bench->algorithm = 2;
-		bench->strategy = "Medium / O(n\u221An)";
+		bench->strategy = "Medium / O(n√n)";
 	}
 	else if (!ft_strcmp(args, "--complex"))
 	{
@@ -84,4 +84,3 @@ int	is_flags(char *args)
 		return (1);
 	return (0);
 }
-
