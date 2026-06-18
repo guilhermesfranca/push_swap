@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/18 01:09:44 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/18 22:30:58 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int	main(int argc, char **argv)
 		bench.strategy = "Adaptive / O(n log n)";
 	assign_indexes(a);
 	push_swap(&a, &b, &bench);
-	//sort_simple_extraction(&a, &b, &bench);
 	if (bench.active)
 		print_bench(&bench);
 	free_stack(&a);

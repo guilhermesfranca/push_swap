@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_turk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:22:16 by guilh             #+#    #+#             */
-/*   Updated: 2026/06/18 00:55:11 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/18 22:47:17 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	find(t_stack **a, t_stack **b, t_bench *bench)
 	int		best_a;
 	int		best_b;
 	int		pos_b;
-		int pos_arr[2];
+	int		pos_arr[2];
 
 	curr = *a;
 	pos_a = 0;
