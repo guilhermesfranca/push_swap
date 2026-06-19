@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/18 23:08:16 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/19 23:07:09 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	how_sorted(t_stack *stack)
 void	adaptive(t_stack **a, t_stack **b, t_bench *bench)
 {
 	if (bench->disorder < 0.2)
-		turk_sort(a, b, bench);
+		turk_sort(a, b, bench, 's');
 	else if (bench->disorder < 0.5)
 		k_sort(a, b, bench);
 	else
-		turk_sort_complex(a, b, bench);
+		turk_sort(a, b, bench, 'c');
 }
 
 void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
@@ -73,11 +73,11 @@ void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
 	else if (size <= 5)
 		sort_simple(a, b, bench);
 	else if (bench->algorithm == 1)
-		turk_sort(a, b, bench);
+		turk_sort(a, b, bench, 's');
 	else if (bench->algorithm == 2)
 		k_sort(a, b, bench);
 	else if (bench->algorithm == 3)
-		turk_sort_complex(a, b, bench);
+		turk_sort(a, b, bench, 'c');
 	else
 		adaptive(a, b, bench);
 }

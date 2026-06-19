@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 17:53:36 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/18 22:30:58 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/19 23:29:38 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ int	main(int argc, char **argv)
 	a = ft_parse_args(argc, argv, &bench);
 	b = NULL;
 	bench.disorder = compute_disorder(a);
-	if (!bench.algorithm && bench.disorder <= 0.2)
+	if (!bench.algorithm && bench.disorder < 0.2)
 		bench.strategy = "Adaptive / O(n²)";
-	else if (!bench.algorithm && bench.disorder <= 0.5)
+	else if (!bench.algorithm && bench.disorder < 0.5)
 		bench.strategy = "Adaptive / O(n√n)";
 	else if (!bench.algorithm && bench.disorder >= 0.5)
 		bench.strategy = "Adaptive / O(n log n)";

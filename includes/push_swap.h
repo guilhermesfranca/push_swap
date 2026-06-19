@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 19:06:57 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/17 23:25:56 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/19 22:23:30 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
+# endif
+
+# ifndef A
+#  define A 0
+# endif
+
+# ifndef B
+#  define B 1
 # endif
 
 typedef struct s_stack
@@ -114,11 +122,11 @@ int					get_min_pos(t_stack *stack);
 int					get_max_pos(t_stack *stack);
 int					get_target_b_pos(t_stack *b, int index_a);
 int					get_target_a_pos(t_stack *a, int index_b);
-int					assing_cost(int pos, int size);
-int					total_cost(int pos_a, int pos_b, int size_a, int size_b);
 void				rotate_single_a(t_stack **a, int pos_a, int size_a,
 						t_bench *bench);
 void				rotate_single_b(t_stack **b, int pos_b, int size_b,
+						t_bench *bench);
+void				execute_move(t_stack **a, t_stack **b, int *best,
 						t_bench *bench);
 t_stack				*ft_circular_newnode(int value);
 void				ft_circular_add_back(t_stack **lst, t_stack *new_node);
@@ -127,14 +135,12 @@ int					is_duplicate(t_stack *stack, int n);
 int					ft_atoi(const char *n_str, long *n);
 int					ft_strcmp(char *s1, char *s2);
 void				start_bench(t_bench *bench);
-int					calculate_actual_cost(int pos_a, int pos_b, int size_a,
-						int size_b);
-void				exe_move_t(t_stack **a, t_stack **b, int *pos,
-						t_bench *bench);
-void				find_best_move(t_stack **a, t_stack **b, t_bench *bench);
-void				turk_sort_complex(t_stack **a, t_stack **b, t_bench *bench);
-void				exe_move(t_stack **a, t_stack **b, int *pos,
-						t_bench *bench);
-void				find(t_stack **a, t_stack **b, t_bench *bench);
-void				turk_sort(t_stack **a, t_stack **b, t_bench *bench);
+int					total_best_cost(int *pos, int *size);
+void				find_best_cheapest(t_stack **a, t_stack **b, t_bench *bench,
+						int *size);
+int					total_cost(int *pos, int *size);
+void				find_cheapest(t_stack **a, t_stack **b, t_bench *bench,
+						int *size);
+void				turk_sort(t_stack **a, t_stack **b, t_bench *bench,
+						int name);
 #endif
