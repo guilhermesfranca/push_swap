@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_turk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 20:22:16 by guilh             #+#    #+#             */
-/*   Updated: 2026/06/19 23:23:33 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/21 19:49:59 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	total_best_cost(int *pos, int *size)
+static int	total_best_cost(int *pos, int *size)
 {
 	int	rr;
 	int	rrr;
@@ -40,7 +40,7 @@ int	total_best_cost(int *pos, int *size)
 	return (min);
 }
 
-void	find_best_cheapest(t_stack **a, t_stack **b, t_bench *bench, int *size)
+static void	find_best_cheapest(t_stack **a, t_stack **b, t_bench *bench, int *size)
 {
 	t_stack	*curr;
 	int		min_ops;
@@ -69,7 +69,7 @@ void	find_best_cheapest(t_stack **a, t_stack **b, t_bench *bench, int *size)
 	execute_move(a, b, best, bench);
 }
 
-int	total_cost(int *pos, int *size)
+static int	total_cost(int *pos, int *size)
 {
 	int	total_cost;
 	int	cost[2];
@@ -95,7 +95,7 @@ int	total_cost(int *pos, int *size)
 	return (total_cost);
 }
 
-void	find_cheapest(t_stack **a, t_stack **b, t_bench *bench, int *size)
+static void	find_cheapest(t_stack **a, t_stack **b, t_bench *bench, int *size)
 {
 	t_stack	*curr;
 	int		min_ops;

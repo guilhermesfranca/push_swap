@@ -6,7 +6,7 @@
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/17 22:56:38 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/21 20:16:31 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,46 +41,48 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	print_error_end_free_exit(t_stack **sa, char **args)
+void	print_error_end_free_exit(t_stack **a, t_stack **b, char **args)
 {
 	if (args)
 		free_args(args);
-	if (sa && *sa)
-		free_stack(sa);
+	if (a && *a)
+		free_stack(a);
+	if (b && *b)
+		free_stack(b);
 	ft_printf(2, "Error\n");
 	exit(1);
 }
 
-void	set_flags(char *args, t_bench *bench)
+int is_sorted(t_stack *stack)
 {
-	if (!ft_strcmp(args, "--simple"))
-	{
-		bench->algorithm = 1;
-		bench->strategy = "Simple / O(n²)";
-	}
-	else if (!ft_strcmp(args, "--medium"))
-	{
-		bench->algorithm = 2;
-		bench->strategy = "Medium / O(n√n)";
-	}
-	else if (!ft_strcmp(args, "--complex"))
-	{
-		bench->algorithm = 3;
-		bench->strategy = "Complex / O(n log n)";
-	}
+    t_stack *start;
+
+    if (!stack)
+        return (1);
+    start = stack;
+    while (stack->next != start)
+    {
+        if (stack->index > stack->next->index)
+            return (0);
+        stack = stack->next;
+    }
+    return (1);
 }
 
-int	is_flags(char *args)
+int	is_duplicate(t_stack *stack, int n)
 {
-	if (!ft_strcmp(args, "--simple"))
-		return (1);
-	if (!ft_strcmp(args, "--medium"))
-		return (1);
-	if (!ft_strcmp(args, "--complex"))
-		return (1);
-	if (!ft_strcmp(args, "--adaptive"))
-		return (1);
-	if (!ft_strcmp(args, "--bench"))
-		return (1);
+	t_stack	*current;
+
+	if (!stack)
+		return (0);
+	current = stack;
+	while (1)
+	{
+		if (current->value == n)
+			return (1);
+		current = current->next;
+		if (current == stack)
+			break ;
+	}
 	return (0);
 }

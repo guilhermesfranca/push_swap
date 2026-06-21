@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 11:00:25 by guilhermefr       #+#    #+#             */
-/*   Updated: 2026/06/11 18:36:45 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/21 19:50:54 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	simple_3low(t_stack **stack, t_bench *bench)
 	}
 }
 
-void	bring_to_top(t_stack **stack, t_bench *bench, int target_index)
+static void	bring_to_top(t_stack **stack, t_bench *bench, int target_index)
 {
 	int		pos;
 	int		size;

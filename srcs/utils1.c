@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 15:19:21 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/17 23:30:51 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/21 21:06:59 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,4 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] == s2[i] && s1[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-void	start_bench(t_bench *bench)
-{
-	bench->disorder = 0.0;
-	bench->active = 0;
-	bench->algorithm = 0;
-	bench->strategy = "Adaptive";
-	bench->total_ops = 0;
-	bench->pa = 0;
-	bench->pb = 0;
-	bench->sa = 0;
-	bench->sb = 0;
-	bench->ss = 0;
-	bench->ra = 0;
-	bench->rb = 0;
-	bench->rr = 0;
-	bench->rra = 0;
-	bench->rrb = 0;
-	bench->rrr = 0;
 }

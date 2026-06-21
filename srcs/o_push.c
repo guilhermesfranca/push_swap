@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   o_push.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 23:24:09 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 23:25:36 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/21 19:44:34 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push_part2(t_stack **dest, t_stack *node_push)
+static void	push_part2(t_stack **dest, t_stack *node_push)
 {
 	t_stack	*last_dest;
 

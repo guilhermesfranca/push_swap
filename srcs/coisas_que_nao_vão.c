@@ -6,49 +6,60 @@
 /*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 18:21:09 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/17 23:14:39 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/21 22:56:05 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	print_bench(t_bench *bench)
-{
-	ft_printf(2, "[bench] disorder:  %f%%\n", bench->disorder * 100.0);
-	ft_printf(2, "[bench] strategy:  %s\n", bench->strategy);
-	ft_printf(2, "[bench] total_ops:  %i\n", bench->total_ops);
-	ft_printf(2, "[bench] sa:  %i  sb:  %i  ss:  ", bench->sa, bench->sb);
-	ft_printf(2, "%i  pa:  %i  pb:  %i\n", bench->ss, bench->pa, bench->pb);
-	ft_printf(2, "[bench] ra:  %i  rb:  %i  rr:  ", bench->ra, bench->rb);
-	ft_printf(2, "%i  rra:  %i  rrb:  %i", bench->rr, bench->rra, bench->rrb);
-	ft_printf(2, "  rrr:  %i\n", bench->rrr);
-}
-
-double	compute_disorder(t_stack *stack)
+int	how_sorted(t_stack *stack)
 {
 	t_stack	*current;
-	t_stack	*next;
-	long	mistakes;
-	long	total_pairs;
 
-	mistakes = 0;
-	total_pairs = 0;
+	if (!stack || stack->next == stack)
+		return (1);
 	current = stack;
 	while (1)
 	{
-		next = current->next;
-		while (next != stack)
-		{
-			total_pairs++;
-			if (current->value > next->value)
-				mistakes++;
-			next = next->next;
-		}
-		if (current == stack->prev)
-			break ;
+		if (current->index > current->next->index)
+			return (0);
 		current = current->next;
+		if (current->next == stack)
+			break ;
 	}
-	if (total_pairs == 0)
-		return (0.0);
-	return ((double)mistakes / (double)total_pairs);
+	return (1);
+}
+
+int	get_index(t_stack *stack, int value)
+{
+	t_stack	*current;
+	int		index;
+
+	index = 0;
+	current = stack;
+	while (1)
+	{
+		if (current->value < value)
+			index++;
+		current = current->next;
+		if (current == stack)
+			break ;
+	}
+	return (index);
+}
+
+void	assign_indexes(t_stack *stack)
+{
+	t_stack	*current;
+
+	if (!stack)
+		return ;
+	current = stack;
+	while (1)
+	{
+		current->index = get_index(stack, current->value);
+		current = current->next;
+		if (current == stack)
+			break ;
+	}
 }

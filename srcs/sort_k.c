@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_k.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 21:02:25 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 23:47:29 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/21 20:00:59 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_sqrt(int n)
+static int	ft_sqrt(int n)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ int	ft_sqrt(int n)
 	return (i - 1);
 }
 
-void	push_to_b(t_stack **a, t_stack **b, t_bench *bench, int total_size)
+static void	push_to_b(t_stack **a, t_stack **b, t_bench *bench, int total_size)
 {
 	int	chunk_size;
 	int	i;
@@ -53,7 +53,7 @@ void	push_to_b(t_stack **a, t_stack **b, t_bench *bench, int total_size)
 	}
 }
 
-void	push_to_a(t_stack **a, t_stack **b, t_bench *bench, int total_size)
+static void	push_to_a(t_stack **a, t_stack **b, t_bench *bench, int total_size)
 {
 	t_stack	*current;
 	int		current_size;

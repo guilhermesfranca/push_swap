@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
+/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 07:57:04 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/18 01:10:54 by guilhermefr      ###   ########.fr       */
+/*   Updated: 2026/06/21 22:18:05 by guilh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,4 @@ int	ft_stacksize(t_stack *stack)
 			break ;
 	}
 	return (size);
-}
-
-int	is_duplicate(t_stack *stack, int n)
-{
-	t_stack	*current;
-
-	if (!stack)
-		return (0);
-	current = stack;
-	while (1)
-	{
-		if (current->value == n)
-			return (1);
-		current = current->next;
-		if (current == stack)
-			break ;
-	}
-	return (0);
 }

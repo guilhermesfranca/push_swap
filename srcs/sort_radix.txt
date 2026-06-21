@@ -1,18 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort_radix.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: guilhermefranca <guilhermefranca@studen    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/07 15:45:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/18 00:55:58 by guilhermefr      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    sort_radix.txt                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: guilh <guilh@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/06/07 15:45:17 by guicarva          #+#    #+#              #
+#    Updated: 2026/06/21 22:19:54 by guilh            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #include "../includes/push_swap.h"
 
-int	get_max_bits(t_stack *a)
+static int	get_max_bits(t_stack *a)
 {
 	t_stack	*current;
 	int		max_index;
@@ -36,7 +36,7 @@ int	get_max_bits(t_stack *a)
 	return (bits);
 }
 
-int	aaaa(t_stack *stack, int i)
+static int	pays_off(t_stack *stack, int i)
 {
 	t_stack	*curr;
 	int		one;
@@ -103,13 +103,15 @@ void	radix_sort(t_stack **a, t_stack **b, t_bench *bench)
 	i = 0;
 	while (i < max_bits)
 	{
-		if (aaaa(*a, i))
+		if (is_sorted(*a) && ft_stacksize(*b) == 0)
+            break ;
+		if (pays_off(*a, i))
 		{
 			i++;
 			continue ;
 		}
 		process_a_bit(a, b, bench, i);
-		if (aaaa(*b, i + 1))
+		if (pays_off(*b, i + 1))
 		{
 			i++;
 			continue ;
