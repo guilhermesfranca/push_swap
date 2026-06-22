@@ -6,7 +6,7 @@
 /*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 18:47:17 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/15 23:25:01 by guicarva         ###   ########.fr       */
+/*   Updated: 2026/06/22 23:13:50 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	rra(t_stack **a, t_bench *bench)
 	if ((*a)->prev == *a)
 		return ;
 	*a = (*a)->prev;
-	bench->total_ops++;
-	bench->rra++;
-	ft_printf(1, "rra\n");
+	if (bench)
+	{
+		bench->total_ops++;
+		bench->rra++;
+		ft_printf(1, "rra\n");
+	}
 }
 
 void	rrb(t_stack **b, t_bench *bench)
@@ -27,20 +30,24 @@ void	rrb(t_stack **b, t_bench *bench)
 	if ((*b)->prev == *b)
 		return ;
 	*b = (*b)->prev;
-	bench->total_ops++;
-	bench->rrb++;
-	ft_printf(1, "rrb\n");
+	if (bench)
+	{
+		bench->total_ops++;
+		bench->rrb++;
+		ft_printf(1, "rrb\n");
+	}
 }
 
 void	rrr(t_stack **a, t_stack **b, t_bench *bench)
 {
-	if ((*a)->prev == *a)
+	if ((*a)->prev == *a || (*b)->prev == *b)
 		return ;
 	*a = (*a)->prev;
-	if ((*b)->prev == *b)
-		return ;
 	*b = (*b)->prev;
-	bench->total_ops++;
-	bench->rrr++;
-	ft_printf(1, "rrr\n");
+	if (bench)
+	{
+		bench->total_ops++;
+		bench->rrr++;
+		ft_printf(1, "rrr\n");
+	}
 }

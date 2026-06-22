@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 12:37:50 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/21 20:16:31 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/22 23:13:42 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	print_error_end_free_exit(t_stack **a, t_stack **b, char **args)
+void	error_exit(t_stack **a, t_stack **b, char **args, char *line)
 {
 	if (args)
 		free_args(args);
@@ -49,24 +49,26 @@ void	print_error_end_free_exit(t_stack **a, t_stack **b, char **args)
 		free_stack(a);
 	if (b && *b)
 		free_stack(b);
+	if (line)
+		free(line);
 	ft_printf(2, "Error\n");
 	exit(1);
 }
 
-int is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
-    t_stack *start;
+	t_stack	*start;
 
-    if (!stack)
-        return (1);
-    start = stack;
-    while (stack->next != start)
-    {
-        if (stack->index > stack->next->index)
-            return (0);
-        stack = stack->next;
-    }
-    return (1);
+	if (!stack)
+		return (1);
+	start = stack;
+	while (stack->next != start)
+	{
+		if (stack->index > stack->next->index)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
 
 int	is_duplicate(t_stack *stack, int n)

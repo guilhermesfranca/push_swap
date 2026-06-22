@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   o_push.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 23:24:09 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/21 19:44:34 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/22 23:13:49 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	push_part2(t_stack **dest, t_stack *node_push)
 	}
 }
 
-void	push(t_stack **orin, t_stack **dest)
+static void	push(t_stack **orin, t_stack **dest)
 {
 	t_stack	*node_push;
 	t_stack	*last_orin;
@@ -56,15 +56,21 @@ void	push(t_stack **orin, t_stack **dest)
 void	pa(t_stack **a, t_stack **b, t_bench *bench)
 {
 	push(b, a);
-	bench->total_ops++;
-	bench->pa++;
-	ft_printf(1, "pa\n");
+	if (bench)
+	{
+		bench->total_ops++;
+		bench->pa++;
+		ft_printf(1, "pa\n");
+	}
 }
 
 void	pb(t_stack **a, t_stack **b, t_bench *bench)
 {
 	push(a, b);
-	bench->total_ops++;
-	bench->pb++;
-	ft_printf(1, "pb\n");
+	if (bench)
+	{
+		bench->total_ops++;
+		bench->pb++;
+		ft_printf(1, "pb\n");
+	}
 }

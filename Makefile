@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: guilh <guilh@student.42.fr>                +#+  +:+       +#+         #
+#    By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/20 11:20:54 by guicarva          #+#    #+#              #
-#    Updated: 2026/06/21 23:56:23 by guilh            ###   ########.fr        #
+#    Updated: 2026/06/22 23:22:45 by guicarva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ COMMON_SRCS = \
 		srcs/o_rotate_r.c \
 		srcs/sort_turk_utils_1.c \
 		srcs/make_stack.c \
+		srcs/sort_radix.c \
 		srcs/utils1.c
 
 PUSH_SWAP_SRCS = $(COMMON_SRCS) srcs/main.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guilh <guilh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: guicarva <guicarva@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 19:57:59 by guicarva          #+#    #+#             */
-/*   Updated: 2026/06/21 22:18:36 by guilh            ###   ########.fr       */
+/*   Updated: 2026/06/22 23:22:11 by guicarva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	print_bench(t_bench *bench)
 
 static void	adaptive(t_stack **a, t_stack **b, t_bench *bench)
 {
-	if (bench->disorder < 0.2)
-		turk_sort(a, b, bench, 's');
-	else if (bench->disorder < 0.5)
+	if (bench->disorder < 20.0)
+		turk_sort(a, b, bench);
+	else if (bench->disorder < 50.0)
 		k_sort(a, b, bench);
 	else
-		turk_sort(a, b, bench, 'c');
+		radix_sort(a, b, bench);
 }
 
 void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
@@ -63,14 +63,14 @@ void	push_swap(t_stack **a, t_stack **b, t_bench *bench)
 	size = ft_stacksize(*a);
 	if (size <= 3)
 		simple_3low(a, bench);
-	else if (size <= 5 && bench->disorder == 100.0)
+	else if (size <= 5 || bench->disorder == 100.0)
 		sort_simple(a, b, bench);
 	else if (bench->algorithm == 1)
-		turk_sort(a, b, bench, 's');
+		turk_sort(a, b, bench);
 	else if (bench->algorithm == 2)
 		k_sort(a, b, bench);
 	else if (bench->algorithm == 3)
-		turk_sort(a, b, bench, 'c');
+		radix_sort(a, b, bench);
 	else
 		adaptive(a, b, bench);
 }
